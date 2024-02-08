@@ -7,13 +7,13 @@ const listToDo = [
   },
   {
     id: 2,
-    name: "Jugar al futbol",
+    name: "Jugar al fútbol",
     description:"Jugar con mis amigos al futbol",
     completed: false
   },
   {
     id: 3,
-    name: "Aprender aleman",
+    name: "Aprender alemán",
     description:"Hacer mis lecciones de aleman en Bussuu",
     completed: false
   },
@@ -25,11 +25,13 @@ const listToDo = [
   }
 ];
 
+const TodoItem = ({ searchValue }) => {
+  
+  const searchToDo = searchValue.toLowerCase()
 
-const TodoItem = () => {
   return (
     <>
-      {listToDo.map((item) => (
+      {listToDo.filter( task => task.name.toLowerCase().includes(searchToDo)).map((item) => (
         <ul className="list" key={item.id}>
           <div 
           className="icon icon-check" 
@@ -64,4 +66,4 @@ const TodoItem = () => {
   );
 }
 
-export {TodoItem , listToDo};
+export {TodoItem , listToDo };

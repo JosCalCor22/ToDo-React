@@ -1,29 +1,20 @@
 import React from "react";
-import { useState } from "react";
-import { listToDo } from "./ItemTodo";
-const HeaderTodo = () => {
 
-  const[searchValue, setSearchValue] = useState("");
+const HeaderTodo = ({ searchValue, setSearchValue, completed, numberTodo }) => {
 
- const countTask = () => {
-  return listToDo.filter((task) => task.completed).length;
- }
-
- const filterTask = () => {
-  return listToDo.filter((task) => task.name.includes(searchValue));
- }
+  console.log('Este es el estado: ' + searchValue);
 
   return (
     <>
       <div className="header">
-        <h1 className="header-title">Completaste <span>{countTask()}</span> de <span>{listToDo.length}</span></h1>
+        <h1 className="header-title">Completaste <span>{completed}</span> de <span>{numberTodo}</span></h1>
         <input 
           className="header-input input" 
           type="search" 
           id="form_input"
           value={searchValue}
-          onChange={(event)=>{
-            setSearchValue(event.target.value);
+          onChange={(e)=>{
+            setSearchValue(e.target.value);
           }}
           onClick={()=>{
             console.log('El usuario esta buscando: ' + searchValue);
