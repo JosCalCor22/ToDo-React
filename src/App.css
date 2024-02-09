@@ -131,7 +131,7 @@ textarea{
   display: flex;
 }
 
-.list{
+.list, .listCompleted{
   grid-template-columns: 45px 1fr 45px;
   display: grid;
   width: auto;
@@ -144,6 +144,13 @@ textarea{
   background-color: #c0bdbd;
 }
 
+.listCompleted{
+  grid-template-columns: 45px 1fr 45px;
+  display: grid;
+  border: 2px solid rgb(0, 0, 0, 0.2);
+  background-color: rgb(67, 217, 22, 0.2);
+}
+
 .list li{
   margin: auto 0;
 }
@@ -152,7 +159,7 @@ textarea{
   grid-column: 1 / 4;
 }
 
-.icon{
+.icon-check, .icon-closed{
   width: 24px;
   height: 24px;
   padding: 8px;
@@ -176,4 +183,8 @@ textarea{
   cursor: pointer;
   background-color: #d70000;
   border: 2px solid rgb(137, 3, 3);
+}
+
+.inactive{
+  display: none;
 }
