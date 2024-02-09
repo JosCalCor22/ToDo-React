@@ -16,8 +16,13 @@ const App = () => {
   /* ItemTodo States */
   const[ searchValue, setSearchValue ] = useState("");
 
+  /* Filter Function */
+  const searchToDo = searchValue.toLowerCase();
+  const filterMode = groupTodo.filter( task => task.name.toLowerCase().includes(searchToDo));
 
   const todoCompleted = groupTodo.filter(todo => !!todo.completed).length;
+
+  /* Complete and Delete items ToDo */
   const todoComplete = (id) => {
     const todoIndex = groupTodo.findIndex(todo => todo.id === id);
     const newTodo = [...groupTodo];
@@ -43,19 +48,31 @@ const App = () => {
           ToDo = {groupTodo}
           />
           <div>
-            {
-              groupTodo.map((todo) => (
-                <TodoItem 
-                  key={todo.id}
-                  nameTodo={todo.name}
-                  todoCancel={todo.cancel}
-                  searchValue = {searchValue}
-                  description={todo.description}
-                  Itemcompleted={todo.completed}
-                  onDelete={() => todoDelete(todo.id)}
-                  onComplete={() => todoComplete(todo.id)}
-                />
-              ))
+            { searchValue ? filterMode.map((todo) => (
+              <TodoItem 
+              key={todo.id}
+              nameTodo={todo.name}
+              todoCancel={todo.cancel}
+              searchValue = {searchValue}
+              description={todo.description}
+              Itemcompleted={todo.completed}
+              onDelete={() => todoDelete(todo.id)}
+              onComplete={() => todoComplete(todo.id)}
+            />
+            ))
+            :
+            groupTodo.map((todo) => (
+              <TodoItem 
+                key={todo.id}
+                nameTodo={todo.name}
+                todoCancel={todo.cancel}
+                searchValue = {searchValue}
+                description={todo.description}
+                Itemcompleted={todo.completed}
+                onDelete={() => todoDelete(todo.id)}
+                onComplete={() => todoComplete(todo.id)}
+              />
+            ))
             }
           </div>
         </section>
@@ -66,5 +83,7 @@ const App = () => {
     </>
   );
 }
+
+/* .map((item) => () */
 
 export default App;

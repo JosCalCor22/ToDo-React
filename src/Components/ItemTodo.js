@@ -29,8 +29,6 @@ const listToDo = [
 console.log(listToDo) */
 
 const TodoItem = ({ searchValue, onComplete, onDelete, Itemcompleted, nameTodo, todoCancel, description }) => {
-  
-  const searchToDo = searchValue.toLowerCase();
 
   return (
     <>
