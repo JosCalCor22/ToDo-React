@@ -145,10 +145,15 @@ textarea{
 }
 
 .listCompleted{
-  grid-template-columns: 45px 1fr 45px;
-  display: grid;
+  flex-direction: column;
+  display: flex;
   border: 2px solid rgb(0, 0, 0, 0.2);
   background-color: rgb(67, 217, 22, 0.2);
+}
+
+.listCompleted li{
+  text-align: center;
+  width: 100%;
 }
 
 .list li{

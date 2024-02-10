@@ -7,11 +7,39 @@ import { SectionAddTodo } from "./ButtonIcon";
 import { HeaderTodo } from "./HeaderTodo";
 import { TodoItem } from "./ItemTodo";
 import { listToDo } from "./ItemTodo";
-import "../App.css";
+import "../styles/App.css";
+
+function useLocalStorage(itemName, itemValue ) {
+
+  /* Adding info to LocalStorage */
+  const createLocalItem = localStorage.setItem(itemName, JSON.stringify(listToDo));
+  const getLocalItem = localStorage.getItem(itemName);
+  let parsedItem;
+  
+  console.log(createLocalItem);
+  /* Create an empty element for LocalStorage */
+  if(!getLocalItem) {
+    localStorage.setItem(itemName, JSON.stringify(itemValue));
+    parsedItem = itemValue;
+  } else{
+    parsedItem = JSON.parse(getLocalItem);
+  }
+
+  const [ items, setItems ] = useState(parsedItem);
+
+  /* Save Items ToDo in LocalStorage */
+  const todoSave = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItems(newItem);
+  }
+
+  return [ items, todoSave ];
+}
 
 const App = () => {
+
   /* Header States */
-  const [ groupTodo, setGroupTodo] = useState(listToDo);
+  const [ groupTodo, todoSave ] = useLocalStorage('TODO_V1', listToDo);
   
   /* ItemTodo States */
   const[ searchValue, setSearchValue ] = useState("");
@@ -28,12 +56,13 @@ const App = () => {
     const newTodo = [...groupTodo];
     newTodo[todoIndex].completed = true;
 
-    setGroupTodo(newTodo);
+    todoSave(newTodo);
   }
 
   const todoDelete = (id) => {
     const deleteFilter = groupTodo.filter((item) => item.id !== id);
-    return setGroupTodo(deleteFilter);
+
+    todoSave(deleteFilter);
   }
 
   return (
@@ -83,7 +112,5 @@ const App = () => {
     </>
   );
 }
-
-/* .map((item) => () */
 
 export default App;

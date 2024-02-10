@@ -25,10 +25,8 @@ const listToDo = [
     cancel: false
   }
 ];
-/* 
-console.log(listToDo) */
 
-const TodoItem = ({ searchValue, onComplete, onDelete, Itemcompleted, nameTodo, todoCancel, description }) => {
+const TodoItem = ({ onComplete, onDelete, Itemcompleted, nameTodo, todoCancel, description }) => {
 
   return (
     <>
@@ -43,7 +41,7 @@ const TodoItem = ({ searchValue, onComplete, onDelete, Itemcompleted, nameTodo, 
         </div>
         <li>{ nameTodo }</li>
         <div 
-        className={!todoCancel ? "icon-closed" : "inactive"} 
+        className={!todoCancel && !Itemcompleted ? "icon-closed" : "inactive"} 
         onClick={onDelete}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -51,7 +49,7 @@ const TodoItem = ({ searchValue, onComplete, onDelete, Itemcompleted, nameTodo, 
             <path d="M6 6l12 12"></path>
           </svg>
         </div>
-        <div className="list__description inactive">
+        <div className="list__description">
           <p>{description}</p>
         </div>
       </ul>
