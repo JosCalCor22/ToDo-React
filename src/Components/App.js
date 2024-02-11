@@ -1,6 +1,5 @@
 /* Hooks */
-import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* Components */
 import { SectionAddTodo } from "./ButtonIcon";
@@ -9,27 +8,24 @@ import { TodoItem } from "./ItemTodo";
 import { listToDo } from "./ItemTodo";
 import "../styles/App.css";
 
-function useLocalStorage(itemName, itemValue ) {
-
-  /* Adding info to LocalStorage */
-  const createLocalItem = localStorage.setItem(itemName, JSON.stringify(listToDo));
-  const getLocalItem = localStorage.getItem(itemName);
-  let parsedItem;
+function setInitialState (key) {
+  const getLocalItem = localStorage.getItem(key);
   
-  console.log(createLocalItem);
-  /* Create an empty element for LocalStorage */
-  if(!getLocalItem) {
-    localStorage.setItem(itemName, JSON.stringify(itemValue));
-    parsedItem = itemValue;
+  if(!getLocalItem){
+    const createLocalItem = localStorage.setItem(key, JSON.stringify(listToDo));
+    const parsedItem = JSON.parse(createLocalItem);
+    return parsedItem;
   } else{
-    parsedItem = JSON.parse(getLocalItem);
+    return JSON.parse(getLocalItem);
   }
+}
 
-  const [ items, setItems ] = useState(parsedItem);
+function useLocalStorage() {
+  const [ items, setItems ] = useState([]);
 
   /* Save Items ToDo in LocalStorage */
   const todoSave = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem));
+    localStorage.setItem('TODO_V1', JSON.stringify(newItem));
     setItems(newItem);
   }
 
@@ -37,12 +33,15 @@ function useLocalStorage(itemName, itemValue ) {
 }
 
 const App = () => {
-
   /* Header States */
-  const [ groupTodo, todoSave ] = useLocalStorage('TODO_V1', listToDo);
-  
+  const [ groupTodo, todoSave ] = useLocalStorage(); ;
+
   /* ItemTodo States */
   const[ searchValue, setSearchValue ] = useState("");
+
+  useEffect(
+    () => {todoSave(setInitialState('TODO_V1'));},[]
+  );
 
   /* Filter Function */
   const searchToDo = searchValue.toLowerCase();
