@@ -131,6 +131,16 @@ textarea{
   display: flex;
 }
 
+.listLoading{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 331.98px;
+  height: 130.8px;
+  border-radius: 12px;
+  border: 2px solid rgb(0, 0, 0, 0.2);
+}
+
 .list, .listCompleted{
   grid-template-columns: 45px 1fr 45px;
   display: grid;

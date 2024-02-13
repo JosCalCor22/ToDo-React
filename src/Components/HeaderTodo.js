@@ -1,9 +1,12 @@
+/* Hooks */
 import React from "react";
+import { useContext } from "react";
 
-const HeaderTodo = ({ searchValue, setSearchValue, completed, numberTodo }) => {
+/* Components */
+import { TodoContext } from "./TodoContext";
 
-  console.log('Este es el estado: ' + searchValue);
-
+const HeaderTodo = () => {
+  const { completed, numberTodo, searchValue, setSearchValue } = useContext(TodoContext);
   return (
     <>
       <div className="header">

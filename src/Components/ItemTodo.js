@@ -1,32 +1,14 @@
 const listToDo = [
   {
     id: window.crypto.randomUUID(),
-    name: "Hacer curso",
-    description:"Terminar el curso de programacion con React",
-    completed: false,
-    cancel: false
-  }, {
-    id: window.crypto.randomUUID(),
-    name: "Jugar al fútbol",
-    description:"Jugar con mis amigos al futbol",
-    completed: false,
-    cancel: false
-  }, {
-    id: window.crypto.randomUUID(),
-    name: "Aprender alemán",
-    description:"Hacer mis lecciones de aleman en Bussuu",
-    completed: false,
-    cancel: false
-  }, {
-    id: window.crypto.randomUUID(),
-    name: "Hacer tarea",
-    description:"Terminar la tarea de programacion con React",
+    name: "Crear tu primer ToDo",
+    description:"Elimina este ToDo de prueba y crea el tuyo",
     completed: false,
     cancel: false
   }
 ];
 
-const TodoItem = ({ onComplete, onDelete, Itemcompleted, nameTodo, todoCancel, description }) => {
+const TodoItem = ({ onComplete, onDelete, Itemcompleted, nameTodo, todoCancel, description, loading, error }) => {
 
   return (
     <>
