@@ -20,6 +20,9 @@ const TodoProvider = ({ children }) => {
   const [ loading, setLoading ] = useState(true);
   const [ error, setError ] = useState(false);
 
+  /* Portal States */
+  const [ modal, setModal ] = useState(false);
+
   useEffect(
     () => {
       setTimeout(() => {
@@ -64,6 +67,18 @@ const TodoProvider = ({ children }) => {
     todoSave(newTodo);
   }
 
+  const addTodo = (text, description) => {
+    const newTodo = [...groupTodo];
+    newTodo.push({
+      id: newTodo.length + 1,
+      name: text,
+      description: description,
+      completed: false,
+    }); 
+
+    todoSave(newTodo);
+  }
+
   const todoDelete = (id) => {
     const deleteFilter = groupTodo.filter((item) => item.id !== id);
 
@@ -73,7 +88,10 @@ const TodoProvider = ({ children }) => {
   return (
     <TodoContext.Provider value={{
         error,
+        modal,
+        addTodo,
         loading,
+        setModal,
         groupTodo,
         todoDelete,
         filterMode,

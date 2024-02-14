@@ -1,7 +1,3 @@
-:root{
-  --Main-font: 'Helvetica', Arial;
-}
-
 ul{
   padding-inline-start: 0;
 }
@@ -15,6 +11,11 @@ textarea{
   resize: none;
 }
 
+.inactive{
+  display: none;
+}
+
+/* Styles App Section */
 .App {
   grid-template-columns: 400px 400px;
   justify-content: center;
@@ -81,6 +82,101 @@ textarea{
   color: #97ca3f;
 }
 
+.listLoading{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 331.98px;
+  height: 130.8px;
+  border-radius: 12px;
+  border: 2px solid rgb(0, 0, 0, 0.2);
+}
+
+.list, .listCompleted{
+  grid-template-columns: 45px 1fr 45px;
+  display: grid;
+  width: auto;
+  padding: 12px;
+  row-gap: 10px;
+  list-style: none;
+  border-radius: 12px;
+  border: 2px solid #000;
+  transition: all .3s ease-in;
+  background-color: #c0bdbd;
+}
+
+.listCompleted{
+  flex-direction: column;
+  display: flex;
+  border: 2px solid rgb(0, 0, 0, 0.2);
+  background-color: rgb(67, 217, 22, 0.2);
+}
+
+.listCompleted li{
+  text-align: center;
+  width: 100%;
+}
+
+.list li{
+  margin: auto 0;
+}
+
+.list__description{
+  grid-column: 1 / 4;
+}
+
+.icon{
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  fill: none;
+  stroke-width: 2px;
+  border-radius: 50%;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  border: 2px solid #000;
+  transition: all .3s ease-in;
+}
+
+.icon-check:hover{
+  cursor: pointer;
+  background-color: rgb(67, 217, 22);
+  border: 2px solid rgb(22, 94, 0);
+}
+
+.icon-closed:hover{
+  cursor: pointer;
+  background-color: #d70000;
+  border: 2px solid rgb(137, 3, 3);
+}
+
+/* Styles Modal Section */
+#modal{
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 220px);
+}
+
+.section__modal{
+  padding: 50px;
+  background-color: #FFF;
+}
+
+.icon-modal{
+  position: absolute;
+  display: flex;
+  height: 40px;
+  width: 40px;
+  right: -20px;
+  top: -20px;
+  cursor: pointer;
+}
+
+.icon-modal img{
+  align-self: stretch;
+}
+
 .button{
   justify-content: space-between;
   place-items: center;
@@ -129,77 +225,4 @@ textarea{
 .buttonSend{
   justify-content: center;
   display: flex;
-}
-
-.listLoading{
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  width: 331.98px;
-  height: 130.8px;
-  border-radius: 12px;
-  border: 2px solid rgb(0, 0, 0, 0.2);
-}
-
-.list, .listCompleted{
-  grid-template-columns: 45px 1fr 45px;
-  display: grid;
-  width: auto;
-  padding: 12px;
-  row-gap: 10px;
-  list-style: none;
-  border-radius: 12px;
-  border: 2px solid #000;
-  transition: all .3s ease-in;
-  background-color: #c0bdbd;
-}
-
-.listCompleted{
-  flex-direction: column;
-  display: flex;
-  border: 2px solid rgb(0, 0, 0, 0.2);
-  background-color: rgb(67, 217, 22, 0.2);
-}
-
-.listCompleted li{
-  text-align: center;
-  width: 100%;
-}
-
-.list li{
-  margin: auto 0;
-}
-
-.list__description{
-  grid-column: 1 / 4;
-}
-
-.icon-check, .icon-closed{
-  width: 24px;
-  height: 24px;
-  padding: 8px;
-  fill: none;
-  stroke-width: 2px;
-  border-radius: 50%;
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  border: 2px solid #000;
-  transition: all .3s ease-in;
-}
-
-.icon-check:hover{
-  cursor: pointer;
-  background-color: rgb(67, 217, 22);
-  border: 2px solid rgb(22, 94, 0);
-}
-
-.icon-closed:hover{
-  cursor: pointer;
-  background-color: #d70000;
-  border: 2px solid rgb(137, 3, 3);
-}
-
-.inactive{
-  display: none;
 }

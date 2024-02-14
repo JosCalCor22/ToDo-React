@@ -1,12 +1,14 @@
 /* Components */
 import "../styles/App.css";
 import { TodoItem } from "./ItemTodo";
+import { SectionModal } from "./Modal";
 import { HeaderTodo } from "./HeaderTodo";
 import { SectionAddTodo } from "./ButtonIcon";
 import { LoadingComponent } from "./LoadingComponent";
 import { TodoContext, TodoProvider } from "./TodoContext";
 
 const App = () => {
+
   return (
     <>
       <TodoProvider>
@@ -73,6 +75,9 @@ const App = () => {
           </section>
           <section className="addTodo">
             <SectionAddTodo />
+            <TodoContext.Consumer>
+              {({ modal }) => (modal ? <SectionModal /> : null)}
+            </TodoContext.Consumer>
           </section>
         </main>
       </TodoProvider>
