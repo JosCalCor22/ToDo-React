@@ -1,9 +1,7 @@
 /* Components */
-import "../styles/App.css";
 import { TodoItem } from "./ItemTodo";
 import { SectionModal } from "./Modal";
 import { HeaderTodo } from "./HeaderTodo";
-import { SectionAddTodo } from "./ButtonIcon";
 import { LoadingComponent } from "./LoadingComponent";
 import { TodoContext, TodoProvider } from "./TodoContext";
 
@@ -13,7 +11,7 @@ const App = () => {
     <>
       <TodoProvider>
         <main className="App">
-          <section className="todoApp">
+          <section className="container__todo">
             <HeaderTodo />
             <TodoContext.Consumer>
               {({
@@ -25,7 +23,7 @@ const App = () => {
                 searchValue,
                 todoComplete
               }) => (
-                <div>
+                <section>
                   {
                     loading ? 
                       <LoadingComponent />
@@ -43,15 +41,15 @@ const App = () => {
 
                   { searchValue ? filterMode.map((todo) => (
                     <TodoItem 
-                    key={todo.id}
-                    nameTodo={todo.name}
-                    todoCancel={todo.cancel}
-                    searchValue = {searchValue}
-                    description={todo.description}
-                    Itemcompleted={todo.completed}
-                    onDelete={() => todoDelete(todo.id)}
-                    onComplete={() => todoComplete(todo.id)}
-                  />
+                      key={todo.id}
+                      nameTodo={todo.name}
+                      todoCancel={todo.cancel}
+                      searchValue = {searchValue}
+                      description={todo.description}
+                      Itemcompleted={todo.completed}
+                      onDelete={() => todoDelete(todo.id)}
+                      onComplete={() => todoComplete(todo.id)}
+                    />
                   ))
                   :
                   groupTodo.map((todo) => (
@@ -69,12 +67,11 @@ const App = () => {
                     />
                   ))
                   }
-                </div>
+                </section>
               )}
             </TodoContext.Consumer>
           </section>
           <section className="addTodo">
-            <SectionAddTodo />
             <TodoContext.Consumer>
               {({ modal }) => (modal ? <SectionModal /> : null)}
             </TodoContext.Consumer>

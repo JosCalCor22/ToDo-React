@@ -11,10 +11,10 @@ const TodoContext = createContext();
 const TodoProvider = ({ children }) => {
 
   /* Header States */
-  const [ groupTodo, todoSave ] = useLocalStorage(); ;
+  const [ groupTodo, todoSave ] = useLocalStorage();
 
   /* ItemTodo States */
-  const[ searchValue, setSearchValue ] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   /* Render States */
   const [ loading, setLoading ] = useState(true);
@@ -54,9 +54,9 @@ const TodoProvider = ({ children }) => {
 
   /* Filter Function */
   const searchToDo = searchValue.toLowerCase();
-  const filterMode = groupTodo.filter( task => task.name.toLowerCase().includes(searchToDo));
+  const filterMode = groupTodo.filter( task => task?.name?.toLowerCase().includes(searchToDo));
 
-  const todoCompletedFilter = groupTodo.filter(todo => !!todo.completed).length;
+  const todoCompletedFilter = groupTodo.filter(todo => !!todo?.completed).length;
 
   /* Complete and Delete items ToDo */
   const todoComplete = (id) => {

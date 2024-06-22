@@ -1,0 +1,85 @@
+.header__todo{
+  flex-direction: column;
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  gap: 20px;
+}
+
+.header__todo--inputs{
+  display: flex;
+  gap: 50px;
+}
+
+.btn-addTodo{
+  justify-content: space-between;
+  place-items: center;
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  transition: all .3s ease-in;
+  background-color: #c0bdbd;
+}
+
+.btn-addTodo:hover{
+  box-shadow: 0 0 10px 0 black;
+  cursor: pointer;
+  border: 2px solid gray;
+}
+
+.btn-addTodo-text{
+  font-size: 20px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.btn-addTodo-icon{
+  width: 24px;
+  height: 24px;
+}
+
+.header__todo--title{
+  text-align: center;
+  font-weight: 500;
+  color: black;
+  font-size: 32px;
+  margin: 0;
+}
+
+.header__todo--title span{
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.header-input {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  border-radius: 8px;
+  transition: all .3s ease-in;
+  border: 1px solid #424242;
+  background-color: #424242;
+  font-family: var(--Main-font);
+  color: #ffffff64;
+  box-shadow: 0 0 10px 0 #424242;
+}
+
+.header-input:hover{
+  cursor: text;
+  background-color: #618fdf;
+  border: 1px solid #424242;
+  box-shadow: 0 0 10px 0 #233553;
+}
+
+.header-input:focus{
+  outline-color: #fff;
+  color: #fff;
+  background-color: #618fdf;
+}
+
+.header-input::placeholder{
+  color: #ffffff64;
+}
