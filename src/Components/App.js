@@ -23,7 +23,7 @@ const App = () => {
                 searchValue,
                 todoComplete
               }) => (
-                <section>
+                <section className="map__todo">
                   {
                     loading ? 
                       <LoadingComponent />
@@ -50,22 +50,60 @@ const App = () => {
                       onDelete={() => todoDelete(todo.id)}
                       onComplete={() => todoComplete(todo.id)}
                     />
-                  ))
-                  :
-                  groupTodo.map((todo) => (
-                    <TodoItem 
-                      key={todo.id}
-                      error = {error}
-                      loading = {loading}
-                      nameTodo={todo.name}
-                      todoCancel={todo.cancel}
-                      searchValue = {searchValue}
-                      description={todo.description}
-                      Itemcompleted={todo.completed}
-                      onDelete={() => todoDelete(todo.id)}
-                      onComplete={() => todoComplete(todo.id)}
-                    />
-                  ))
+                  )) : (
+                    <>
+                      <section className="map__todo--uncompleted">
+                        {
+                          groupTodo.filter((todo) => !todo.cancel && !todo.completed).map((todo) => (
+                            <TodoItem 
+                              key={todo.id}
+                              nameTodo={todo.name}
+                              todoCancel={todo.cancel}
+                              searchValue = {searchValue}
+                              description={todo.description}
+                              Itemcompleted={todo.completed}
+                              onDelete={() => todoDelete(todo.id)}
+                              onComplete={() => todoComplete(todo.id)}
+                            />
+                          ))
+                        }
+                      </section>
+
+                      <section className="map__todo--completed">
+                        {
+                          groupTodo.filter((todo) => todo.completed).map((todo) => (
+                            <TodoItem 
+                              key={todo.id}
+                              nameTodo={todo.name}
+                              todoCancel={todo.cancel}
+                              searchValue = {searchValue}
+                              description={todo.description}
+                              Itemcompleted={todo.completed}
+                              onDelete={() => todoDelete(todo.id)}
+                              onComplete={() => todoComplete(todo.id)}
+                            />
+                          ))
+                        }
+                      </section>
+
+                      <section className="map__todo--deleted">
+                        {
+                          groupTodo.filter((todo) => todo.cancel).map((todo) => (
+                            <TodoItem 
+                              key={todo.id}
+                              nameTodo={todo.name}
+                              todoCancel={todo.cancel}
+                              searchValue = {searchValue}
+                              description={todo.description}
+                              Itemcompleted={todo.completed}
+                              onDelete={() => todoDelete(todo.id)}
+                              onComplete={() => todoComplete(todo.id)}
+                            />
+                          ))
+                        }
+                      </section>
+                    </>
+                  )
                   }
                 </section>
               )}

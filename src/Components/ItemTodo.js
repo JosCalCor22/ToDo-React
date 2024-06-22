@@ -11,28 +11,21 @@ const listToDo = [
   }
 ];
 
-/* const cancelToDo = [
-]
-
-const completedToDo = [
-  
-] */
-
 const TodoItem = ({ onComplete, onDelete, Itemcompleted, nameTodo, todoCancel, description }) => {
 
   return (
     <>
-      <ul className={Itemcompleted ? 'listCompleted' : todoCancel ? 'inactive' : 'list'}>
+      <ul className={Itemcompleted ? 'listCompleted' : todoCancel ? 'listCancel' : 'list'}>
         <div
-        className={!Itemcompleted ? "icon icon-check" : "inactive"} 
-        onClick={onComplete}>
-          <img src={completeIcon} alt="Complete ToDo" />
+          className={!Itemcompleted && !todoCancel ? "icon icon-check" : "inactive"} 
+          onClick={onComplete}>
+            <img src={completeIcon} alt="Complete ToDo" />
         </div>
         <li>{ nameTodo }</li>
         <div 
-        className={!todoCancel && !Itemcompleted ? "icon icon-closed" : "inactive"} 
-        onClick={onDelete}>
-          <img src={closeIcon} alt="Delete ToDo" />
+          className={!todoCancel && !Itemcompleted ? "icon icon-closed" : "inactive"}
+          onClick={onDelete}>
+            <img src={closeIcon} alt="Delete ToDo" />
         </div>
         <div className="list__description">
           <p>{description}</p>

@@ -67,6 +67,14 @@ const TodoProvider = ({ children }) => {
     todoSave(newTodo);
   }
 
+  const todoDelete = (id) => {
+    const todoIndex = groupTodo.findIndex(todo => todo.id === id);
+    const newTodo = [...groupTodo];
+    newTodo[todoIndex].cancel = true;
+
+    todoSave(newTodo);
+  }
+
   const addTodo = (text, description) => {
     const newTodo = [...groupTodo];
     newTodo.push({
@@ -77,12 +85,6 @@ const TodoProvider = ({ children }) => {
     }); 
 
     todoSave(newTodo);
-  }
-
-  const todoDelete = (id) => {
-    const deleteFilter = groupTodo.filter((item) => item.id !== id);
-
-    todoSave(deleteFilter);
   }
 
   return (
